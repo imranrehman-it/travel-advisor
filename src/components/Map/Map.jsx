@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, React } from "react";
 import GoogleMapReact from "google-map-react";
 import { Paper, Typography, useMediaQuery } from "@material-ui/core";
 import LocationOnOutlinesIcon from "@material-ui/icons/LocationOnOutlined";

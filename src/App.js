@@ -14,6 +14,13 @@ const App = () => {
   });
   const [bounds, setBounds] = useState(null);
 
+  useEffect(() => {
+    getPlacesData(bounds.sw, bounds.ne).then((data) => {
+      console.log(data);
+      setPlaces(data);
+    });
+  });
+
   return (
     <>
       <CssBaseline />

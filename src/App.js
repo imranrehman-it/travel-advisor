@@ -15,6 +15,16 @@ const App = () => {
   const [bounds, setBounds] = useState({});
 
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setCoordinates({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+    console.log("india");
+  }, []);
+
+  useEffect(() => {
     getPlacesData(bounds.ne, bounds.sw).then((data) => {
       setPlaces(data);
     });

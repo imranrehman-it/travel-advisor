@@ -7,6 +7,8 @@ import Map from "./components/Map/Map";
 import { getPlacesData } from "./api/index";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [childClicked, setChildClicked] = useState(null);
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({
     lat: 52.520007,
@@ -21,14 +23,17 @@ const App = () => {
         lng: position.coords.longitude,
       });
     });
-    console.log("india");
   }, []);
 
   useEffect(() => {
-    getPlacesData(bounds.ne, bounds.sw).then((data) => {
-      setPlaces(data);
-    });
-    console.log(places);
+    if (bounds) {
+      setIsLoading(true);
+
+      getPlacesData(bounds.ne, bounds.sw).then((data) => {
+        setPlaces(data);
+        setIsLoading(false);
+      });
+    }
   }, [coordinates, bounds]);
 
   return (
@@ -37,7 +42,11 @@ const App = () => {
       <Header />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
-          <List places={places} />
+          <List
+            places={places}
+            childClicked={childClicked}
+            isLoading={isLoading}
+          />
         </Grid>
         <Grid item xs={12} md={8}>
           <Map
@@ -45,6 +54,7 @@ const App = () => {
             setBounds={setBounds}
             coordinates={coordinates}
             places={places}
+            setChildClicked={setChildClicked}
           />
         </Grid>
       </Grid>

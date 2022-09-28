@@ -10,10 +10,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [childClicked, setChildClicked] = useState(null);
   const [places, setPlaces] = useState([]);
-  const [coordinates, setCoordinates] = useState({
-    lat: 52.520007,
-    lng: 13.404954,
-  });
+  const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState({});
 
   useEffect(() => {
@@ -42,20 +39,10 @@ const App = () => {
       <Header />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
-          <List
-            places={places}
-            childClicked={childClicked}
-            isLoading={isLoading}
-          />
+          <List places={places} childClicked={childClicked} isLoading={isLoading} />
         </Grid>
         <Grid item xs={12} md={8}>
-          <Map
-            setCoordinates={setCoordinates}
-            setBounds={setBounds}
-            coordinates={coordinates}
-            places={places}
-            setChildClicked={setChildClicked}
-          />
+          <Map setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} places={places} setChildClicked={setChildClicked} />
         </Grid>
       </Grid>
     </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState, useEffect, createRef } from "react";
 import {
   CircularProgress,
@@ -13,12 +13,11 @@ import {
 import useStyles from "./styles";
 import PlacesDetails from "../PlacesDetails/PlacesDetails";
 
-const List = ({ places, childClicked, isLoading }) => {
+const List = ({ places, isLoading, childClicked }) => {
   const classes = useStyles();
   const [type, setType] = useState("resturants");
   const [rating, setRating] = useState("");
   const [elRefs, setElRefs] = useState([]);
-  console.log({ childClicked });
 
   useEffect(() => {
     setElRefs((refs) =>
@@ -30,6 +29,7 @@ const List = ({ places, childClicked, isLoading }) => {
 
   return (
     <div className={classes.container}>
+      <button>testest</button>
       <Typography variant="h4">
         Resturants, Hotels and Attractions around you
       </Typography>
@@ -58,11 +58,11 @@ const List = ({ places, childClicked, isLoading }) => {
           </FormControl>
           <Grid container spacing={3} className={classes.list}>
             {places?.map((place, i) => (
-              <Grid key={i} item xs={12}>
+              <Grid key={i} item xs={12} id={place.location_id}>
                 <PlacesDetails
-                  selected={Number(childClicked) == i}
-                  refProp={elRefs[i]}
                   place={place}
+                  selected={Number(childClicked) === i}
+                  ref={elRefs[i]}
                 />
               </Grid>
             ))}

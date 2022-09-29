@@ -11,10 +11,11 @@ const App = () => {
   const [childClicked, setChildClicked] = useState(null);
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({
-    lat: 52.520007,
-    lng: 13.404954,
+    lat: 43.8269,
+    lng: -79.22033,
   });
   const [bounds, setBounds] = useState({});
+  console.log({ childClicked });
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -34,6 +35,8 @@ const App = () => {
         setIsLoading(false);
       });
     }
+
+    console.log(places);
   }, [coordinates, bounds]);
 
   return (

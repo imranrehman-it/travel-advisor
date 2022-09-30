@@ -10,14 +10,12 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [childClicked, setChildClicked] = useState(null);
   const [places, setPlaces] = useState([]);
-<<<<<<< HEAD
+
   const [coordinates, setCoordinates] = useState({
     lat: 43.8269,
     lng: -79.22033,
   });
-=======
-  const [coordinates, setCoordinates] = useState({});
->>>>>>> c03dc23384b5be9159794e5a19b037d5b355a353
+
   const [bounds, setBounds] = useState({});
   console.log({ childClicked });
 
@@ -49,10 +47,20 @@ const App = () => {
       <Header />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
-          <List places={places} childClicked={childClicked} isLoading={isLoading} />
+          <List
+            places={places}
+            childClicked={childClicked}
+            isLoading={isLoading}
+          />
         </Grid>
         <Grid item xs={12} md={8}>
-          <Map setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} places={places} setChildClicked={setChildClicked} />
+          <Map
+            setCoordinates={setCoordinates}
+            setBounds={setBounds}
+            coordinates={coordinates}
+            places={places}
+            setChildClicked={setChildClicked}
+          />
         </Grid>
       </Grid>
     </>
